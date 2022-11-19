@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Strategy } from 'passport-local';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 import { User } from './user.entity';
 
@@ -23,7 +24,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       this.logger.debug(`User ${username} not found!!!`);
       throw new UnauthorizedException();
     }
-    if (!passport) {
+    if (!(await bcrypt.compare(passport, user.password))) {
       this.logger.debug(`Invalid credentials for user ${username}!!!`);
       throw new UnauthorizedException();
     }
