@@ -5,20 +5,20 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { Profile } from './profile.entity';
+import { Profile } from '../../auth/profile.entity';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()

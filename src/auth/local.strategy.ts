@@ -5,7 +5,7 @@ import { Strategy } from 'passport-local';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
-import { User } from './user.entity';
+import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
