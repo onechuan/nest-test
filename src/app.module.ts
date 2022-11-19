@@ -8,8 +8,8 @@ import { AppService } from './app.service';
 import { EventsModule } from './events/events.module';
 import { AttendeesModule } from './attendees/attendees.module';
 
-import ormConfig from './config/ormConfig';
-import ormConfigProd from './config/ormConfigProd';
+import ormConfig from './config/orm.config';
+import ormConfigProd from './config/orm.config.prod';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
