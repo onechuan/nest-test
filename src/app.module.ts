@@ -10,6 +10,7 @@ import { AttendeesModule } from './attendees/attendees.module';
 
 import ormConfig from './config/ormConfig';
 import ormConfigProd from './config/ormConfigProd';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import ormConfigProd from './config/ormConfigProd';
     TypeOrmModule.forRootAsync({
       useFactory: process.env.NODE_ENV !== 'prod' ? ormConfig : ormConfigProd,
     }),
+    AuthModule,
     EventsModule,
     AttendeesModule,
   ],
