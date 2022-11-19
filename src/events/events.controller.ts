@@ -11,6 +11,7 @@ import {
   ParseIntPipe,
   ValidationPipe,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository } from 'typeorm';
@@ -57,7 +58,11 @@ export class EventsController {
 
   @Get(':id')
   async findOneEventById(@Param('id') id) {
-    return await this.eventsRepository.findOneBy({ id });
+    const event = await this.eventsRepository.findOneBy({ id });
+    if (!event) {
+      throw new NotFoundException();
+    }
+    return event;
   }
 
   @Patch(':id')
