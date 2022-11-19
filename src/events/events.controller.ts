@@ -17,7 +17,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository } from 'typeorm';
 
 import { CreateEventDto } from './dto/create-event.dto';
-import { Events } from './events.entity';
+import { Events } from './entity/events.entity';
 import { UpdateEventDto } from './dto/update-event.dto';
 
 @Controller('/events')

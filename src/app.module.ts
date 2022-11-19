@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { EventsModule } from './events/events.module';
+import { AttendeesModule } from './attendees/attendees.module';
 
 import ormConfig from './config/ormConfig';
 import ormConfigProd from './config/ormConfigProd';
@@ -21,6 +22,7 @@ import ormConfigProd from './config/ormConfigProd';
       useFactory: process.env.NODE_ENV !== 'prod' ? ormConfig : ormConfigProd,
     }),
     EventsModule,
+    AttendeesModule,
   ],
   controllers: [AppController],
   providers: [
