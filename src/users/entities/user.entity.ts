@@ -4,8 +4,11 @@ import {
   Column,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
+import { Attendees } from '../../attendees/entities/attendee.entity';
 import { Profile } from '../../auth/profile.entity';
+import { Events } from '../../events/entity/events.entity';
 
 @Entity()
 export class User {
@@ -30,4 +33,7 @@ export class User {
   @OneToOne(() => Profile)
   @JoinColumn()
   profile: Profile;
+
+  @OneToMany(() => Events, (event) => event.organizer)
+  organized: Events[];
 }

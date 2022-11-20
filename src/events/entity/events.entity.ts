@@ -1,5 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Attendees } from '../../attendees/entities/attendee.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Events {
@@ -18,6 +26,20 @@ export class Events {
   @Column()
   address: string;
 
-  @OneToMany(() => Attendees, (attendee) => attendee.event)
+  @OneToMany(() => Attendees, (attendee) => attendee.event, {
+    cascade: true,
+  })
   attendees: Attendees[];
+
+  @ManyToOne(() => User, (user) => user.organized)
+  @JoinColumn({ name: 'organizerId' })
+  organizer: User;
+
+  @Column()
+  organizerId: number;
+
+  attendeeCount?: number;
+  attendeeRejected?: number;
+  attendeeMaybe?: number;
+  attendeeAccepted?: number;
 }
